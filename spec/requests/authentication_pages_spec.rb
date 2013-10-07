@@ -47,6 +47,21 @@ describe "Authentication"  do
 	describe "authorization" do
 		describe "for non-signed-in-users" do
 			let(:user) { FactoryGirl.create(:user) }
+			
+			describe "when attempting to visit a protected page" do
+				before do
+					visit edit_user_path
+					fill_in "Email",	  with: user.email
+					fill_in "Password", with: user.password
+					click_button "Sign In"
+				end
+
+				describe "after signing in" do
+					it "should render the desired protected page" do
+						expect(page).to have_title("Edit User")
+					end
+				end
+			end
 
 			describe "in the Users controller" do
 				describe "visiting the edit page" do
