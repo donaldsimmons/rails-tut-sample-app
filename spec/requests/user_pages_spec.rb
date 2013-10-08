@@ -99,10 +99,10 @@ describe "UserPages" do
 					end.to change(user.followed_users, :count).by(-1)
 				end
 
-				it "should decrement the other user's follower's count"
+				it "should decrement the other user's follower's count" do
 					expect do
 						click_button "Unfollow"
-					end.to change(other_users.followers, :count).by(-1)
+					end.to change(other_user.followers, :count).by(-1)
 				end
 
 				describe "toggling the button" do
