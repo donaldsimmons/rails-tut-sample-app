@@ -170,7 +170,7 @@ describe User do
 		end	
 
 		it { should be_following(other_user) }
-		is(:followed_users) { should include(other_user) }
+		its(:followed_users) { should include(other_user) }
 
 		describe "and unfollowing" do
 			before { @user.unfollow!(other_user) }
